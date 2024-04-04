@@ -1,62 +1,42 @@
-ï»¿#include <iostream>
+#include <iostream>
 #include <string>
-#include <cstdlib> // ëœë¤ ìˆ«ì ìƒì„±ì„ ìœ„í•´ ì¶”ê°€
-#include <ctime> // ì‹œê°„ ê¸°ë°˜ ì‹œë“œ ê°’ ì„¤ì •ì„ ìœ„í•´ ì¶”ê°€
+#include <cstdlib> // ·£´ı ¼ıÀÚ »ı¼ºÀ» À§ÇØ Ãß°¡
+#include <ctime> // ½Ã°£ ±â¹İ ½Ãµå °ª ¼³Á¤À» À§ÇØ Ãß°¡
 
 using namespace std;
-
-enum Suit {
-	CLUB,
-	DIAMOND,
-	HEART,
-	SPADE
-};
 
 class Card {
 private:
 	int number;
 	int suit;
-	// Suit suit // enum Suit ì‚¬ìš©ì‹œ ë³€ê²½í•˜ì—¬ ì‚¬ìš©
 public:
-	Card(); // ëœë¤ ì¹´ë“œìƒì„±ì
-	Card(int n, int s); // ì¹´ë“œ ì •ë³´ ì§€ì • ìƒì„±ì
-	Card(int n, Suit s); // enum ì‚¬ìš© ìƒì„±ì
+	Card(); // ·£´ı Ä«µå»ı¼ºÀÚ
+	Card(int n, int s); // Ä«µå Á¤º¸ ÁöÁ¤ »ı¼ºÀÚ
 
-	void printCard(); // ì¹´ë“œì •ë³´ ì¶œë ¥
+	void printCard(); // Ä«µåÁ¤º¸ Ãâ·Â
 };
 
 Card::Card() {
 	number = rand() % 13 + 1;
 	suit = rand() % 4;
 }
-// enum ë¬¸ì œì‹œ ì‚¬ìš©
 Card::Card(int n, int s) {
 	number = n;
 	suit = s;
 }
-//enum ì‚¬ìš© ê°€ëŠ¥ì‹œ ì‚¬ìš©
-Card::Card(int n, Suit s) {
-	number = n;
-	suit = static_cast<Suit>(rand() % 4); // intë¥¼ Suit íƒ€ì…ìœ¼ë¡œ ìºìŠ¤íŒ…
-
-}
 
 void Card::printCard() {
-	string suitSymbol;
-	switch (suit) {
-	case CLUB: suitSymbol = "CLUB"; break;
-	case DIAMOND: suitSymbol = "DIAMOND"; break;
-	case HEART: suitSymbol = "HEART"; break;
-	case SPADE: suitSymbol = "SPADE"; break;
-	}
+	string suitSymbols[] = { "CLUB", "DIAMOND", "HEART", "SPADE" };
+	string suitSymbol = suitSymbols[suit];
+	
 
 	string numberName;
-	int isFaceOrAce = false;
+	bool isFaceOrAce = false;
 	if (number == 1) {
 		numberName = "Ace";
 		isFaceOrAce = true;
 	}
-	else if (number == 11){
+	else if (number == 11) {
 		numberName = "Jack";
 		isFaceOrAce = true;
 	}
@@ -78,24 +58,24 @@ void Card::printCard() {
 }
 
 int main() {
-	// ëœë¤ ì‹œë“œ ì´ˆê¸°í™”
+	// ·£´ı ½Ãµå ÃÊ±âÈ­
 	srand(time(NULL));
 
-	// ëœë¤ì¹´ë“œ ìƒì„± ë° ì¶œë ¥
+	// ·£´ıÄ«µå »ı¼º ¹× Ãâ·Â
 	Card randomCard;
 	randomCard.printCard();
 
-	// ì„ì˜ ì¹´ë“œ ì„¤ì • ìƒì„± ë° ì¶œë ¥
+	// ÀÓÀÇ Ä«µå ¼³Á¤ »ı¼º ¹× Ãâ·Â
 	int suit;
 	int number;
-	
-	cout << "ì¹´ë“œ ëª¨ì–‘ì„ ì…ë ¥í•˜ì‹œì˜¤(CLUB:0, DIAMOND:1, HEART:2, SPADE:3 ): ";
+
+	cout << "Ä«µå ¸ğ¾çÀ» ÀÔ·ÂÇÏ½Ã¿À(CLUB:0, DIAMOND:1, HEART:2, SPADE:3 ): ";
 	cin >> suit;
 
-	cout << "ì¹´ë“œ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì‹œì˜¤(1~13): ";
+	cout << "Ä«µå ¹øÈ£¸¦ ÀÔ·ÂÇÏ½Ã¿À(1~13): ";
 	cin >> number;
-	if (number > 13 or number < 1 or suit < 0 or suit > 5) {
-		cout << "ì˜ëª» ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤." << endl;
+	if (number < 1 || number > 13 || suit < 0 || suit > 3) {
+		cout << "Àß¸ø ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù." << endl;
 	}
 	else {
 		Card randomCard2(number, suit);
