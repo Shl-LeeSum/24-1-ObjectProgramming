@@ -86,7 +86,7 @@ public:
 	void printPlayerDeck();
 	bool getDrawCheck();
 	bool drawCard(Card *card);
-	// Card* discardCard();
+	Card* discardCard();
 };
 
 // Player 생성자: 초기화
@@ -101,14 +101,11 @@ Player::~Player()
 	if (getDrawCheck())
 		delete deck;
 }
-Card* discardCard() {
-	/*
-	*
-	* 
-	* 작성 필요
-	* 
-	* 
-	*/	
+Card* Player::discardCard() {
+
+	Card* card = deck;
+	card = nullptr;
+	return card;
 };
 
 string Player::getPlayerName() { return name; }
