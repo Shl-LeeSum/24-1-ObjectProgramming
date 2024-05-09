@@ -14,6 +14,12 @@ int main( )
         std::cout << " Total Players : " << team[i]->getSharedPlayerCount() << std::endl;
        
     }
+    std::cout << "delete team[3] " << std::endl;
+    delete team[3];
+    std::cout << "Check SharedPlayerCount BY team[0]->getSharedPlayerCount() : " << team[0]->getSharedPlayerCount() << std::endl;
+    std::cout << "Check SharedPlayerCount BY team[9]->getSharedPlayerCount() : " << team[9]->getSharedPlayerCount() << std::endl;
+
+
 
     return 0;
 }
